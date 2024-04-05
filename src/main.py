@@ -152,10 +152,6 @@ def save_data(df, filepath):
     df.to_csv(filepath, index=False)
 
 def run_etl_process(input_filepath, output_filepath):
-    # df = load_data(input_filepath)
-    # df_transformed = transform_data(df)
-    # save_data(df_transformed, output_filepath)
-
     df2 = load_data(input_filepath)
     df_transformed2 = transform_data2(df2)
     save_data(df_transformed2, output_filepath)
