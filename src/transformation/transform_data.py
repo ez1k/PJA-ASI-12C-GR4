@@ -1,4 +1,6 @@
-def transform_data(laptop_data):
+import pandas as pd
+
+def transform_data(laptop_data: pd.DataFrame) -> pd.DataFrame:
     laptop_data.drop('Unnamed: 0', axis=1, inplace=True)
     laptop_data['Ram'] = laptop_data['Ram'].str.replace('GB', '').astype(int)
     laptop_data['Weight'] = laptop_data['Weight'].str.replace('kg', '').astype(float)
@@ -56,5 +58,5 @@ def transform_data(laptop_data):
 
     return laptop_data
 
-def save_data(df, filepath):
+def save_data(df: pd.DataFrame, filepath: str) -> None:
     df.to_csv(filepath, index=False)
