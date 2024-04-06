@@ -53,6 +53,8 @@ def transform_data(laptop_data):
         'windows' if 'windows' in x else ('linux' if 'linux' in x else 'freedos/other')))
  
     laptop_data.drop(['ScreenResolution', 'Memory', 'OpSys'], axis=1, inplace=True)
-    print(laptop_data.info())
 
     return laptop_data
+
+def save_data(df, filepath):
+    df.to_csv(filepath, index=False)
