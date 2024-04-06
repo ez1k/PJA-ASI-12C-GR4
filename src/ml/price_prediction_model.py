@@ -1,17 +1,16 @@
-import numpy as np # linear algebra
+import numpy as np 
 import pandas as pd
-
-
-laptop_data = pd.read_csv('laptop_data_output_file.csv')
-
-#numerical_cols = laptop_data.select_dtypes(include=['float64', 'int64']).columns
-categorical_cols = laptop_data.select_dtypes(include=['object']).columns
 
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
+
+
+laptop_data = pd.read_csv('docs/laptop_data_output_file.csv')
+
+categorical_cols = laptop_data.select_dtypes(include=['object']).columns
 
 label_encoder = LabelEncoder()
 for col in categorical_cols:
