@@ -53,6 +53,8 @@ def transform_data(laptop_data: pd.DataFrame) -> pd.DataFrame:
     laptop_data['OpSys'] = laptop_data['OpSys'].str.lower()
     laptop_data['OperatingSystem'] = laptop_data['OpSys'].apply(lambda x: 'macos' if 'mac' in x else (
         'windows' if 'windows' in x else ('linux' if 'linux' in x else 'freedos/other')))
+    
+    laptop_data['Price'] = laptop_data['Price'].astype(int)
  
     laptop_data.drop(['ScreenResolution', 'Memory', 'OpSys'], axis=1, inplace=True)
 
