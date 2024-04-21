@@ -16,16 +16,30 @@ laptops_for_model:
     kedro-viz:
       layer: intermediate
 
-X:
+X_train:
   type: pandas.CSVDataset
-  filepath: data/03_primary/X.csv
+  filepath: data/03_primary/X_train.csv
   metadata:
     kedro-viz:
       layer: primary
 
-y:
+X_test:
   type: pandas.CSVDataset
-  filepath: data/03_primary/y.csv
+  filepath: data/03_primary/X_test.csv
+  metadata:
+    kedro-viz:
+      layer: primary
+
+y_train:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/y_train.csv
+  metadata:
+    kedro-viz:
+      layer: primary
+
+y_test:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/y_test.csv
   metadata:
     kedro-viz:
       layer: primary
