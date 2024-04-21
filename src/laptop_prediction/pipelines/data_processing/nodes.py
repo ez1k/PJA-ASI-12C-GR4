@@ -1,3 +1,7 @@
+"""
+This is a boilerplate pipeline 'data_processing'
+generated using Kedro 0.19.2
+"""
 import pandas as pd
 
 def transform_data(laptop_data: pd.DataFrame) -> pd.DataFrame:
@@ -59,6 +63,3 @@ def transform_data(laptop_data: pd.DataFrame) -> pd.DataFrame:
     laptop_data.drop(['ScreenResolution', 'Memory', 'OpSys'], axis=1, inplace=True)
 
     return laptop_data
-
-def save_data(df: pd.DataFrame, filepath: str) -> None:
-    df.to_csv(filepath, index=False)

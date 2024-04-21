@@ -1,3 +1,7 @@
+"""
+This is a boilerplate pipeline 'modeling'
+generated using Kedro 0.19.2
+"""
 import numpy as np 
 import pandas as pd
 
@@ -8,21 +12,19 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from typing import Tuple
 
-def preprocess_data(filepath: str) -> Tuple[pd.DataFrame, pd.Series]:
-    laptop_data = pd.read_csv(filepath)
-
-    categorical_cols = laptop_data.select_dtypes(include=['object']).columns
+def preprocess_data(data: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
+    categorical_cols = data.select_dtypes(include=['object']).columns
     label_encoder = LabelEncoder()
     for col in categorical_cols:
-        laptop_data[col] = label_encoder.fit_transform(laptop_data[col])
+        data[col] = label_encoder.fit_transform(data[col])
 
-    laptop_data['FlashStorage'] = laptop_data['FlashStorage'].fillna(0)
-    laptop_data['MemorySizeHDD_TB'] = laptop_data['MemorySizeHDD_TB'].fillna(0)
-    laptop_data['MemorySizeHDD_GB'] = laptop_data['MemorySizeHDD_GB'].fillna(0)
-    laptop_data['MemorySizeSSD'] = laptop_data['MemorySizeSSD'].fillna(0)
+    data['FlashStorage'] = data['FlashStorage'].fillna(0)
+    data['MemorySizeHDD_TB'] = data['MemorySizeHDD_TB'].fillna(0)
+    data['MemorySizeHDD_GB'] = data['MemorySizeHDD_GB'].fillna(0)
+    data['MemorySizeSSD'] = data['MemorySizeSSD'].fillna(0)
 
-    X = laptop_data.drop('Price', axis=1)
-    y = laptop_data['Price']
+    X = data.drop('Price', axis=1)
+    y = data['Price']
 
     return X, y
 
@@ -57,8 +59,8 @@ def optimize_model(X: pd.DataFrame, y: pd.Series) -> Tuple[RandomForestRegressor
 
     return best_model, best_mae
 
-def run_price_prediction_model(filepath: str) -> None:
-    X, y = preprocess_data(filepath)
+def run_price_prediction_model(data: pd.DataFrame) -> None:
+    X, y = preprocess_data(data)
     model, mae = run_model(X, y)
     best_model, best_mae = optimize_model(X, y)
     print(f"Initial MAE: {mae}, Optimized MAE: {best_mae}")
