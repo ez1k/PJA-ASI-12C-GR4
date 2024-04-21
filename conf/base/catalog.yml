@@ -1,0 +1,48 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+laptops:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/laptop_data_input_file.csv
+  metadata:
+    kedro-viz:
+      layer: raw
+
+laptops_for_model:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/laptop_data_output_file.csv
+  metadata:
+    kedro-viz:
+      layer: intermediate
+
+X:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/X.csv
+  metadata:
+    kedro-viz:
+      layer: primary
+
+y:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/y.csv
+  metadata:
+    kedro-viz:
+      layer: primary
+
+model:
+  type: pickle.PickleDataset
+  filepath: data/04_model/model.pickle
+
+mae:
+  type: pickle.PickleDataset
+  filepath: data/04_model/mae.pickle
+
+best_model:
+  type: pickle.PickleDataset
+  filepath: data/05_best_model/best_model.pickle
+
+best_mae:
+  type: pickle.PickleDataset
+  filepath: data/05_best_model/best_mae.pickle
+
