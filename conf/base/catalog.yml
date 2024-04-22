@@ -81,7 +81,7 @@ best_model:
 
 best_mae:
   type: pickle.PickleDataset
-  filepath: data/06_best_model/best_mae.pickle
+  filepath: data/07_best_model_output/best_mae.pickle
   metadata:
     kedro-viz:
       layer: model_output
