@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
-def preprocess_data(data: pd.DataFrame) ->[ pd.DataFrame, pd.Series]:
+def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
     categorical_cols = data.select_dtypes(include=['object']).columns
     label_encoder = LabelEncoder()
     for col in categorical_cols:
@@ -19,12 +19,15 @@ def preprocess_data(data: pd.DataFrame) ->[ pd.DataFrame, pd.Series]:
     data['MemorySizeSSD'] = data['MemorySizeSSD'].fillna(0)
 
     return data
-def split_data (data: pd.DataFrame) -> [ pd.DataFrame, pd.Series] :
+
+def split_data (data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame] :
     X = data.drop('Price', axis=1)
     y = data['Price']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-    return X_train, X_test, y_train, y_test
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=0)
+    
+    return X_train, X_test, X_val, y_train, y_test, y_val
 
 
 
