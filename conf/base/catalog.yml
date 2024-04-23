@@ -66,8 +66,8 @@ model:
       layer: model
 
 mae:
-  type: pickle.PickleDataset
-  filepath: data/05_model_output/mae.pickle
+  type: text.TextDataset
+  filepath: data/05_model_output/mae.txt
   metadata:
     kedro-viz:
       layer: model_output
@@ -80,8 +80,8 @@ best_model:
       layer: model
 
 best_mae:
-  type: pickle.PickleDataset
-  filepath: data/07_best_model_output/best_mae.pickle
+  type: text.TextDataset
+  filepath: data/07_best_model_output/best_mae.txt
   metadata:
     kedro-viz:
       layer: model_output
