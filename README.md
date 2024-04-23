@@ -46,7 +46,7 @@ You can run your Kedro project with:
 kedro run
 ```
 
-# How to run pipline visualization
+## How to run pipline visualization
 
 You can run Kedro pipline visualization with:
 
