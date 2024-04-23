@@ -15,6 +15,19 @@ In order to get the best out of the template:
 * Don't commit data to your repository
 * Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
 
+## How to create and activate kedro env in conda
+
+You can create Kedro env with:
+
+```
+conda create --name kedro-environment python=3.10 -y
+```
+You can activate Kedro env with:
+
+```
+conda activate kedro-environment
+```
+
 ## How to install dependencies
 
 Declare any dependencies in `requirements.txt` for `pip` installation.
@@ -31,6 +44,14 @@ You can run your Kedro project with:
 
 ```
 kedro run
+```
+
+# How to run pipline visualization
+
+You can run Kedro pipline visualization with:
+
+```
+kedro viz --autoreload
 ```
 
 ## How to test your Kedro project
@@ -97,3 +118,5 @@ To automatically strip out all output cell contents before committing to `git`, 
 ## Package your Kedro project
 
 [Further information about building project documentation and packaging your project](https://docs.kedro.org/en/stable/tutorial/package_a_project.html)
+`
+
