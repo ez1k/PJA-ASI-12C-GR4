@@ -72,17 +72,90 @@ mae:
     kedro-viz:
       layer: model_output
 
+mse:
+  type: text.TextDataset
+  filepath: data/05_model_output/mse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+rmse:
+  type: text.TextDataset
+  filepath: data/05_model_output/rmse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+r2:
+  type: text.TextDataset
+  filepath: data/05_model_output/r2.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+
 best_model:
   type: pickle.PickleDataset
-  filepath: data/06_best_model/best_model.pickle
+  filepath: data/04_model/best_model.pickle
   metadata:
     kedro-viz:
       layer: model
 
 best_mae:
   type: text.TextDataset
-  filepath: data/07_best_model_output/best_mae.txt
+  filepath: data/05_model_output/best_mae.txt
   metadata:
     kedro-viz:
       layer: model_output
+
+best_mse:
+  type: text.TextDataset
+  filepath: data/05_model_output/best_mse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+best_rmse:
+  type: text.TextDataset
+  filepath: data/05_model_output/best_rmse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+best_r2:
+  type: text.TextDataset
+  filepath: data/05_model_output/best_r2.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_mae:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_mae.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_mse:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_mse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_rmse:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_rmse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_r2:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_r2.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+
 

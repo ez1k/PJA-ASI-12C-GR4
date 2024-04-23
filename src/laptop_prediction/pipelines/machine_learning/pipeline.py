@@ -4,7 +4,7 @@ generated using Kedro 0.19.2
 """
 
 from kedro.pipeline import Pipeline, node, pipeline
-from .nodes import run_model, calculate_mae, optimize_model, calculate_best_mae
+from .nodes import run_model, model_metrics, optimize_model, best_model_metrics, validate_model_metics
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline(
@@ -16,21 +16,25 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="run_model_node",
             ),
             node(
-                func=calculate_mae,
-                inputs=["model", "X_test", "y_test"],
-                outputs="mae",
-                name="calculate_mae_node",
-            ),
-            node(
                 func=optimize_model,
                 inputs=["X_train", "y_train"],
                 outputs="best_model",
                 name="optimize_model_node",
             ), node(
-                func=calculate_best_mae,
+                func=model_metrics,
+                inputs=["model", "X_test", "y_test"],
+                outputs=["mae","mse", "rmse", "r2"],
+                name="model_metrics_node",
+            ),node(
+                func=best_model_metrics,
                 inputs=["best_model","X_test", "y_test"],
-                outputs="best_mae",
-                name="calculate_best_mae_node",
+                outputs=["best_mae","best_mse", "best_rmse", "best_r2"],
+                name="best_model_metrics_node",
+            ), node(
+                func=validate_model_metics,
+                inputs=["model", "X_val", "y_val"],
+                outputs=["val_mae","val_mse", "val_rmse", "val_r2"],
+                name="validate_model_metics_node"
             )
         ]
     )
