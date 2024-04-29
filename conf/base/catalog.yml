@@ -1,0 +1,161 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in "The Data Catalog"
+# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+laptops:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/laptop_data_input_file.csv
+  metadata:
+    kedro-viz:
+      layer: raw
+
+laptops_for_model:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/laptop_data_output_file.csv
+  metadata:
+    kedro-viz:
+      layer: intermediate
+
+X_train:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/X_train.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
+
+X_test:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/X_test.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
+
+X_val:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/X_val.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
+
+y_train:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/y_train.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
+
+y_test:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/y_test.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
+
+y_val:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/y_val.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
+
+model:
+  type: pickle.PickleDataset
+  filepath: data/04_model/model.pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
+mae:
+  type: text.TextDataset
+  filepath: data/05_model_output/mae.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+mse:
+  type: text.TextDataset
+  filepath: data/05_model_output/mse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+rmse:
+  type: text.TextDataset
+  filepath: data/05_model_output/rmse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+r2:
+  type: text.TextDataset
+  filepath: data/05_model_output/r2.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+
+best_model:
+  type: pickle.PickleDataset
+  filepath: data/04_model/best_model.pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
+best_mae:
+  type: text.TextDataset
+  filepath: data/05_model_output/best_mae.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+best_mse:
+  type: text.TextDataset
+  filepath: data/05_model_output/best_mse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+best_rmse:
+  type: text.TextDataset
+  filepath: data/05_model_output/best_rmse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+best_r2:
+  type: text.TextDataset
+  filepath: data/05_model_output/best_r2.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_mae:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_mae.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_mse:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_mse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_rmse:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_rmse.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+val_r2:
+  type: text.TextDataset
+  filepath: data/05_model_output/val_r2.txt
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+
+
