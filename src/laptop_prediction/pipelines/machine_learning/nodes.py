@@ -49,7 +49,7 @@ def best_model_metrics(best_model: RandomForestRegressor, X_test: pd.DataFrame, 
     best_r2 = r2_score(y_test, best_predictions)
     return str(best_mae), str(best_mse), str(best_rmse), str(best_r2)
 
-def validate_model_metics(model: RandomForestRegressor, X_val: pd.DataFrame, y_val: pd.Series):
+def validate_model_metrics(model: RandomForestRegressor, X_val: pd.DataFrame, y_val: pd.Series):
     y_pred = model.predict(X_val)
     val_mae = mean_absolute_error(y_val, y_pred)
     val_mse = mean_squared_error(y_val, y_pred)
