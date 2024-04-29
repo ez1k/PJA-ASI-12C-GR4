@@ -24,8 +24,8 @@ def split_data (data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Data
     X = data.drop('Price', axis=1)
     y = data['Price']
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=0)
+    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.2, random_state=0)
+    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=0)
     
     return X_train, X_test, X_val, y_train, y_test, y_val
 
