@@ -20,12 +20,12 @@ def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
 
     return data
 
-def split_data (data: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame] :
+def split_data (data: pd.DataFrame, train_size: float, val_size: float) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame] :
     X = data.drop('Price', axis=1)
     y = data['Price']
 
-    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=0.2, random_state=0)
-    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=0.5, random_state=0)
+    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=train_size, random_state=0)
+    X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=val_size, random_state=0)
     
     return X_train, X_test, X_val, y_train, y_test, y_val
 

@@ -13,12 +13,12 @@ import math
 import wandb
 
 
-def run_model(X_train: pd.DataFrame, y_train: pd.DataFrame) -> RandomForestRegressor:
-    model = RandomForestRegressor(n_estimators=100, random_state=0)
-    model.fit(X_train, y_train)
+def run_model(X_train: pd.DataFrame, y_train: pd.DataFrame, forest_n: int) -> RandomForestRegressor:
+    model = RandomForestRegressor(n_estimators=forest_n, random_state=0)
+    model.fit(X_train, y_train.values.ravel())
     return model
 
-def optimize_model(X_train: pd.DataFrame, y_train: pd.DataFrame) -> RandomForestRegressor:
+def optimize_model(X_train: pd.DataFrame, y_train: pd.DataFrame, cv: any, verbose: int, n_jobs: int) -> RandomForestRegressor:
     params = {
         'n_estimators': [int(x) for x in np.linspace(start=10, stop=200, num=10)],
         'max_depth': [int(x) for x in np.linspace(2, 30, num=5)] + [None],
@@ -27,9 +27,9 @@ def optimize_model(X_train: pd.DataFrame, y_train: pd.DataFrame) -> RandomForest
         'bootstrap': [True, False]
     }
 
-    model = RandomForestRegressor(random_state=0)
-    random_search = RandomizedSearchCV(estimator=model, param_distributions=params, n_iter=100, cv=3, verbose=2, random_state=0, n_jobs=-1)
-    random_search.fit(X_train, y_train)
+    model = RandomForestRegressor(random_state=0, n_jobs=n_jobs)
+    random_search = RandomizedSearchCV(estimator=model, param_distributions=params, n_iter=100, cv=cv, verbose=verbose, random_state=0, n_jobs=n_jobs)
+    random_search.fit(X_train, y_train.values.ravel())
     best_model = random_search.best_estimator_
     return best_model
 
