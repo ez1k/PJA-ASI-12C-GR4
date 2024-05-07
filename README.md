@@ -38,6 +38,13 @@ To install them, run:
 pip install -r requirements.txt
 ```
 
+### Weights & Biases
+You need to login Weights & Biases with api key:
+
+```
+wandb login
+```
+
 ## How to run your Kedro pipeline
 
 You can run your Kedro project with:

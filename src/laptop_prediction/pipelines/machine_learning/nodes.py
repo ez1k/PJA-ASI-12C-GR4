@@ -12,7 +12,6 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import math
 import wandb
 
-
 def run_model(X_train: pd.DataFrame, y_train: pd.DataFrame, forest_n: int) -> RandomForestRegressor:
     model = RandomForestRegressor(n_estimators=forest_n, random_state=0)
     model.fit(X_train, y_train.values.ravel())
@@ -39,6 +38,15 @@ def model_metrics(model: RandomForestRegressor, X_test: pd.DataFrame, y_test: pd
     mse = mean_squared_error(y_test, model_predict)
     rmse = math.sqrt(mse)
     r2 = r2_score(y_test, model_predict)
+
+    wandb.init(project='PJA-ASI-12C-GR4')
+    wandb.log({
+        "MAE": mae,
+        "MSE": mse,
+        "RMSE": rmse,
+        "R2": r2
+    })
+
     return str(mae), str(mse), str(rmse), str(r2)
 
 def best_model_metrics(best_model: RandomForestRegressor, X_test: pd.DataFrame, y_test: pd.DataFrame) -> str:
@@ -47,6 +55,15 @@ def best_model_metrics(best_model: RandomForestRegressor, X_test: pd.DataFrame, 
     best_mse = mean_squared_error(y_test, best_predictions)
     best_rmse = math.sqrt(best_mse)
     best_r2 = r2_score(y_test, best_predictions)
+
+    wandb.init(project='PJA-ASI-12C-GR4')
+    wandb.log({
+        "Best MAE": best_mae,
+        "Best MSE": best_mse,
+        "Best RMSE": best_rmse,
+        "Best R2": best_r2
+    })
+
     return str(best_mae), str(best_mse), str(best_rmse), str(best_r2)
 
 def validate_model_metrics(model: RandomForestRegressor, X_val: pd.DataFrame, y_val: pd.Series):
@@ -55,4 +72,13 @@ def validate_model_metrics(model: RandomForestRegressor, X_val: pd.DataFrame, y_
     val_mse = mean_squared_error(y_val, y_pred)
     val_rmse = math.sqrt(val_mse)
     val_r2 = r2_score(y_val, y_pred)
+
+    wandb.init(project='PJA-ASI-12C-GR4')
+    wandb.log({
+        "Validation MAE": val_mae,
+        "Validation MSE": val_mse,
+        "Validation RMSE": val_rmse,
+        "Validation R2": val_r2
+    })
+
     return str(val_mae), str(val_mse), str(val_rmse), str(val_r2)
