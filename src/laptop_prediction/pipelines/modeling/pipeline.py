@@ -5,7 +5,7 @@ generated using Kedro 0.19.2
 from kedro.pipeline import Pipeline, node, pipeline
 
 
-from .nodes import preprocess_data,split_data
+from .nodes import preprocess_data, split_data
 
 def create_pipeline(** kwargs) -> Pipeline:
     return Pipeline(
@@ -18,8 +18,8 @@ def create_pipeline(** kwargs) -> Pipeline:
             ),
             node(
                 func=split_data,
-                inputs=["data", "params:train_size", "params:val_size"],
-                outputs=["X_train", "X_val", "X_test", "y_train", "y_val", "y_test"],
+                inputs=["data", "params:test_size", "params:val_size"],
+                outputs=["X_train", "X_test", "X_val", "y_train", "y_test", "y_val"],
                 name="split_data_node",
             )
         ]
