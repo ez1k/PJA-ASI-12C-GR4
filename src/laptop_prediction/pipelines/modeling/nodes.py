@@ -6,6 +6,10 @@ import pandas as pd
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import wandb
+import math
 
 def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
     categorical_cols = data.select_dtypes(include=['object']).columns
@@ -20,11 +24,11 @@ def preprocess_data(data: pd.DataFrame) -> pd.DataFrame:
 
     return data
 
-def split_data (data: pd.DataFrame, test_size: float, val_size: float) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame] :
+def split_data (data: pd.DataFrame, train_size: float, val_size: float) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame] :
     X = data.drop('Price', axis=1)
     y = data['Price']
 
-    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=test_size, random_state=0)
+    X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=train_size, random_state=0)
     X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, test_size=val_size, random_state=0)
     
     return X_train, X_test, X_val, y_train, y_test, y_val
