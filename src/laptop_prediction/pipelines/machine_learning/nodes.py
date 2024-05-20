@@ -18,6 +18,21 @@ def run_model(X_train: pd.DataFrame, y_train: pd.DataFrame, forest_n: int) -> Ra
     model.fit(X_train, y_train.values.ravel())
     return model
 
+def optimize_model(X_test: pd.DataFrame, y_test: pd.DataFrame, cv: any, verbose: int, n_jobs: int) -> RandomForestRegressor:
+    params = {
+        'n_estimators': [int(x) for x in np.linspace(start=10, stop=200, num=10)],
+        'max_depth': [int(x) for x in np.linspace(2, 30, num=5)] + [None],
+        'min_samples_split': [2, 5, 10],
+        'min_samples_leaf': [1, 2, 4],
+        'bootstrap': [True, False]
+    }
+    
+    model = RandomForestRegressor(random_state=0, n_jobs=n_jobs)
+    random_search = RandomizedSearchCV(estimator=model, param_distributions=params, n_iter=100, cv=cv, verbose=verbose, random_state=0, n_jobs=n_jobs)
+    random_search.fit(X_test, y_test.values.ravel())
+    best_model = random_search.best_estimator_
+    return best_model
+
 def evaluate_model(model: RandomForestRegressor, X_test: pd.DataFrame, y_test: pd.DataFrame, X_val: pd.DataFrame, y_val: pd.Series) -> dict:
     metrics = {}
 

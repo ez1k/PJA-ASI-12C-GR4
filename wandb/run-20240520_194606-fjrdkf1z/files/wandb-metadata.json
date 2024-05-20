@@ -1,0 +1,46 @@
+{
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.10.14",
+    "heartbeatAt": "2024-05-20T17:46:09.142894",
+    "startedAt": "2024-05-20T17:46:06.398967",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "run"
+    ],
+    "state": "running",
+    "program": "-m __main__",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/ez1k/PJA-ASI-12C-GR4.git",
+        "commit": "525c902e31be3ee7c30d29842feb79a9eb7199b5"
+    },
+    "email": "biziewskamk@gmail.com",
+    "root": "C:/Users/Gosia/Desktop/ASI/PJA-ASI-12C-GR4",
+    "host": "DESKTOP-7LAOSOT",
+    "username": "Gosia",
+    "executable": "C:\\Users\\Gosia\\miniconda3\\envs\\kedro-environment\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 991.0,
+        "min": 0.0,
+        "max": 1190.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 991.0,
+            "min": 0.0,
+            "max": 1190.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 200.00976181030273,
+            "used": 193.27516555786133
+        }
+    },
+    "memory": {
+        "total": 7.709495544433594
+    }
+}

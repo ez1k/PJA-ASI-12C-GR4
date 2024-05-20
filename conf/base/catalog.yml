@@ -65,6 +65,13 @@ model:
     kedro-viz:
       layer: model
 
+best_model:
+  type: pickle.PickleDataset
+  filepath: data/04_model/best_model.pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
 metrics:
   type: text.TextDataset
   filepath: data/05_model_output/metrics.json
