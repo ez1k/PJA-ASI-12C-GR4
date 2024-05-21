@@ -72,12 +72,31 @@ best_model:
     kedro-viz:
       layer: model
 
-metrics:
-  type: text.TextDataset
-  filepath: data/05_model_output/metrics.json
+train_data:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/train_data.csv
   metadata:
     kedro-viz:
-      layer: model_output
+      layer: model_input
 
+test_data:
+  type: pandas.CSVDataset
+  filepath: data/03_model_input/test_data.csv
+  metadata:
+    kedro-viz:
+      layer: model_input
 
+model_champion:
+  type: pickle.PickleDataset
+  filepath: data/04_model/model_champion.pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
+model_challenger:
+  type: pickle.PickleDataset
+  filepath: data/04_model/model_challenger.pickle
+  metadata:
+    kedro-viz:
+      layer: model
 
