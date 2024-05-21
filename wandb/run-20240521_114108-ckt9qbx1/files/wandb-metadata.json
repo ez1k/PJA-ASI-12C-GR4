@@ -1,0 +1,54 @@
+{
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.10.14",
+    "heartbeatAt": "2024-05-21T09:41:10.026660",
+    "startedAt": "2024-05-21T09:41:08.624285",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "run"
+    ],
+    "state": "running",
+    "program": "-m __main__",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/ez1k/PJA-ASI-12C-GR4.git",
+        "commit": "b5a02ea82cf76c109b9a3fc6c0f7d9f6c1778484"
+    },
+    "email": "s20527@pjwstk.edu.pl",
+    "root": "C:/Users/48516/Desktop/123/ASI/PJA-ASI-12C-GR4",
+    "host": "DESKTOP-H2C24A5",
+    "username": "48516",
+    "executable": "C:\\Users\\48516\\anaconda3\\envs\\kedro-environment\\python.exe",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 3201.0,
+        "min": 0.0,
+        "max": 3201.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3201.0,
+            "min": 0.0,
+            "max": 3201.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 476.2961654663086,
+            "used": 421.4134941101074
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3060 Laptop GPU",
+            "memory_total": 6442450944
+        }
+    ],
+    "memory": {
+        "total": 15.855525970458984
+    }
+}

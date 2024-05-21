@@ -36,6 +36,7 @@ To install them, run:
 
 ```
 pip install -r requirements.txt
+pip install autogluon
 ```
 
 ### Weights & Biases
@@ -59,6 +60,16 @@ You can run Kedro pipline visualization with:
 
 ```
 kedro viz --autoreload
+```
+
+## How to run your Kedro pipeline automl or ml
+
+Ml is deafult. You can add --pipeline=automl for automl or --pipeline=ml for ml:
+
+```
+kedro run --pipeline=automl or kedro viz --autoreload --pipeline=automl
+
+kedro run --pipeline=ml or kedro viz --autoreload --pipeline=ml
 ```
 
 ## How to test your Kedro project
