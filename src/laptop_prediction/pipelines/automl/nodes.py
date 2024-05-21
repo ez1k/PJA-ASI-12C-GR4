@@ -99,14 +99,14 @@ def train_model_challenger(train_data: pd.DataFrame):
     return predictor
 
 def evaluate_models(model_champion, model_challenger, test_data: pd.DataFrame):
-    score_champion = abs(model_champion.evaluate(test_data)['root_mean_squared_error'])
-    score_challenger = abs(model_challenger.evaluate(test_data)['root_mean_squared_error'])
+    score_champion = model_champion.evaluate(test_data)['root_mean_squared_error'] * -1
+    score_challenger = model_challenger.evaluate(test_data)['root_mean_squared_error'] * -1
     if score_challenger < score_champion:  # Assuming lower RMSE is better
-        best_model = model_challenger
-        message = f"Challenger model is better."
-    else:
         best_model = model_champion
-        message = f"Champion model is better."
+        message = f"Champion model is better with RMSE {score_champion:.4f} compared to Challenger model with RMSE {score_challenger:.4f}."
+    else:
+        best_model = model_challenger
+        message = f"Challenger model is better with RMSE {score_challenger:.4f} compared to Champion model with RMSE {score_champion:.4f}."
 
     print(message)
     return best_model
