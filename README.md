@@ -59,6 +59,16 @@ Then run docker with
 docker run --rm --name CONTAINER_NAME -v .:/home/kedro_docker IMAGE_NAME:latest
 ```
 
+### FastAPI
+
+Run base conda and install dependencies
+
+Run this command
+
+```
+fastapi dev src/endpoint/endpoint.py
+```
+
 ## How to run your Kedro pipeline
 
 You can run your Kedro project with:
