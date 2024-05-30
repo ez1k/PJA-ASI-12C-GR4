@@ -45,6 +45,19 @@ You need to login Weights & Biases with api key:
 ```
 wandb login
 ```
+### Running with docker
+
+First build an image with
+
+```
+docker build -t IMAGE_NAME .
+```
+
+Then run docker with
+
+```
+docker run --rm --name CONTAINER_NAME -v .:/home/kedro_docker IMAGE_NAME:latest
+```
 
 ## How to run your Kedro pipeline
 
