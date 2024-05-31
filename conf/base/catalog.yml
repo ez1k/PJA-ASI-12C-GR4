@@ -72,6 +72,13 @@ best_model:
     kedro-viz:
       layer: model
 
+best_model_ml:
+  type: pickle.PickleDataset
+  filepath: data/04_model/best_model_ml.pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
 train_data:
   type: pandas.CSVDataset
   filepath: data/03_model_input/train_data.csv
