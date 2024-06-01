@@ -88,15 +88,28 @@ test_data:
 
 model_champion:
   type: pickle.PickleDataset
-  filepath: data/04_model/model_champion.pickle
+  filepath: data/04_model/model_champion.pkl
   metadata:
     kedro-viz:
       layer: model
 
-model_challenger:
+best_model_aml:
   type: pickle.PickleDataset
-  filepath: data/04_model/model_challenger.pickle
+  filepath: data/04_model/best_model_aml.pkl
   metadata:
     kedro-viz:
       layer: model
 
+best_model_aml_score:
+  type: json.JSONDataset
+  filepath: data/05_model_output/best_model_aml_score.json
+  metadata:
+    kedro-viz:
+      layer: model_output
+
+metrics:
+  type: json.JSONDataset
+  filepath: data/05_model_output/metrics.json
+  metadata:
+    kedro-viz:
+      layer: model_output
