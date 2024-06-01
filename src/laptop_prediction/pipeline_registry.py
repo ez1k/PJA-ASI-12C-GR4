@@ -1,16 +1,26 @@
 """Project pipelines."""
 from __future__ import annotations
-
+ 
 from kedro.framework.project import find_pipelines
-from kedro.pipeline import Pipeline
-
-
+from kedro.pipeline import Pipeline, pipeline
+from laptop_prediction.pipelines.automl import pipeline as automl_pipeline
+from laptop_prediction.pipelines. data_processing import pipeline as  data_processing_pipeline
+from laptop_prediction.pipelines.machine_learning import pipeline as machine_learning_pipeline
+from laptop_prediction.pipelines.modeling import pipeline as modeling_pipeline
+ 
 def register_pipelines() -> dict[str, Pipeline]:
-    """Register the project's pipelines.
+    automl = automl_pipeline.create_pipeline()
 
-    Returns:
-        A mapping from pipeline names to ``Pipeline`` objects.
-    """
-    pipelines = find_pipelines()
-    pipelines["__default__"] = sum(pipelines.values())
-    return pipelines
+    ml = pipeline(
+        [
+            data_processing_pipeline.create_pipeline(),
+            machine_learning_pipeline.create_pipeline(),
+            modeling_pipeline.create_pipeline(),
+        ]
+    )
+
+    return {
+        "__default__": ml,
+        "automl": automl,
+        "ml": ml,
+    }
