@@ -5,27 +5,30 @@ generated using Kedro 0.19.2
 
 from kedro.pipeline import Pipeline, pipeline, node
 
-from laptop_prediction.pipelines.automl.nodes import evaluate_models, train_model_challenger, train_model_champion
-
+from laptop_prediction.pipelines.automl.nodes import (
+    train_model_champion, 
+    evaluate_model, 
+    compare_with_challenger
+)
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
         node(
-                func=train_model_champion,
-                inputs="train_data",
-                outputs="model_champion",
-                name="train_model_champion_node",
-            ),
+            func=train_model_champion,
+            inputs="train_data",
+            outputs="model_champion",
+            name="train_model_champion_node",
+        ),
         node(
-                func=train_model_challenger,
-                inputs="train_data",
-                outputs="model_challenger",
-                name="train_model_challenger_node",
-            ),
+            func=evaluate_model,
+            inputs=["model_champion", "test_data"],
+            outputs="score_champion",
+            name="evaluate_model_champion_node",
+        ),
         node(
-                func=evaluate_models,
-                inputs=["model_champion", "model_challenger", "test_data"],
-                outputs="best_model_ml",
-                name="evaluate_models_node",
-            )
+            func=compare_with_challenger,
+            inputs=["score_champion", "model_champion"],
+            outputs=["best_model_aml", "best_model_aml_score"],
+            name="compare_with_challenger_node",
+        )
     ])
