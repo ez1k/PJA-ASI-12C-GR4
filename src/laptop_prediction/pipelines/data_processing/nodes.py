@@ -4,7 +4,12 @@ generated using Kedro 0.19.2
 """
 import pandas as pd
 
-def transform_data(laptop_data: pd.DataFrame) -> pd.DataFrame:
+def transform_data(laptop: pd.DataFrame, laptops_new: pd.DataFrame, retraining: bool) -> pd.DataFrame:
+    laptop_data = laptop
+    if(retraining and not laptops_new.empty):
+        print("Merging datasets")
+        laptop_data = pd.concat([laptop, laptops_new])
+    
     laptop_data.drop('Unnamed: 0', axis=1, inplace=True)
     laptop_data['Ram'] = laptop_data['Ram'].str.replace('GB', '').astype(int)
     laptop_data['Weight'] = laptop_data['Weight'].str.replace('kg', '').astype(float)

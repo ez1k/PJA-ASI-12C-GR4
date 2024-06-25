@@ -9,6 +9,13 @@ laptops:
     kedro-viz:
       layer: raw
 
+laptops_new:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/laptop_new_data_input_file.csv
+  metadata:
+    kedro-viz:
+      layer: raw
+
 laptops_for_model:
   type: pandas.CSVDataset
   filepath: data/02_intermediate/laptop_data_output_file.csv

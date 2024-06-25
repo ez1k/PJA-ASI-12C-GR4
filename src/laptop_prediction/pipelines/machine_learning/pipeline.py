@@ -1,5 +1,5 @@
 from kedro.pipeline import Pipeline, pipeline, node
-from .nodes import run_model, optimize_model, evaluate_model
+from .nodes import run_model, optimize_model, evaluate_model, compare_with_old_model
 
 def create_pipeline(**kwargs) -> Pipeline:
     return pipeline([
@@ -16,8 +16,14 @@ def create_pipeline(**kwargs) -> Pipeline:
                 name="optimize_model_node",
             ),
         node(
+                func=compare_with_old_model,
+                inputs=["best_model", "X_val", "y_val", "params:retraining"],
+                outputs="new_or_old",
+                name="compare_with_old_model_node",
+            ),
+        node(
                 func=evaluate_model,
-                inputs=["best_model", "X_val", "y_val"],
+                inputs=["new_or_old", "X_val", "y_val"],
                 outputs="metrics",
                 name="evaluate_model_node",
             )
