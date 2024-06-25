@@ -65,20 +65,6 @@ y_val:
     kedro-viz:
       layer: model_input
 
-model:
-  type: pickle.PickleDataset
-  filepath: data/04_model/model.pickle
-  metadata:
-    kedro-viz:
-      layer: model
-
-best_model:
-  type: pickle.PickleDataset
-  filepath: data/04_model/best_model.pickle
-  metadata:
-    kedro-viz:
-      layer: model
-
 train_data:
   type: pandas.CSVDataset
   filepath: data/03_model_input/train_data.csv
@@ -93,30 +79,37 @@ test_data:
     kedro-viz:
       layer: model_input
 
-model_champion:
+model:
   type: pickle.PickleDataset
-  filepath: data/04_model/model_champion.pkl
+  filepath: data/04_model/model.pickle
   metadata:
     kedro-viz:
       layer: model
 
-best_model_aml:
+model_challenger:
   type: pickle.PickleDataset
-  filepath: data/04_model/best_model_aml.pkl
+  filepath: data/04_model/model_challenger.pickle
   metadata:
     kedro-viz:
       layer: model
 
-best_model_aml_score:
+best_model:
+  type: pickle.PickleDataset
+  filepath: data/04_model/best_model.pickle
+  metadata:
+    kedro-viz:
+      layer: model
+
+score_best_model:
   type: json.JSONDataset
-  filepath: data/05_model_output/best_model_aml_score.json
+  filepath: data/05_model_output/score_best_model.json
   metadata:
     kedro-viz:
       layer: model_output
 
 metrics:
   type: json.JSONDataset
-  filepath: data/05_model_output/metrics.json
+  filepath: data/05_model_output/score_challenger.json
   metadata:
     kedro-viz:
       layer: model_output

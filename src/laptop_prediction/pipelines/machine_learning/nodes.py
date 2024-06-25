@@ -65,7 +65,7 @@ def evaluate_model(best_model: RandomForestRegressor, X_val: pd.DataFrame, y_val
     metrics['val_mae'] = mean_absolute_error(y_val, y_pred_test)
     metrics['val_mse'] = mean_squared_error(y_val, y_pred_test)
     metrics['val_rmse'] = math.sqrt(metrics['val_mse'])
-    metrics['val_r2'] = r2_score(y_val, y_pred_test)
+    metrics['val_r2'] = r2_score(y_val, y_pred_test)   
 
     wandb.init(project='PJA-ASI-12C-GR4')
     wandb.log({
@@ -75,4 +75,4 @@ def evaluate_model(best_model: RandomForestRegressor, X_val: pd.DataFrame, y_val
         "Val R2": metrics['val_r2'],
     })
 
-    return str(metrics)
+    return metrics
