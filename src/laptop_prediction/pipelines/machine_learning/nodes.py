@@ -1,13 +1,13 @@
+import os
 import pandas as pd
 import numpy as np
 
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import math
 import wandb
+import joblib
 
 
 def run_model(X_train: pd.DataFrame, y_train: pd.DataFrame, forest_n: int) -> RandomForestRegressor:
@@ -28,6 +28,35 @@ def optimize_model(model: RandomForestRegressor, X_test: pd.DataFrame, y_test: p
     random_search.fit(X_test, y_test.values.ravel())
     best_model = random_search.best_estimator_
     return best_model
+
+def compare_with_old_model(new_model: RandomForestRegressor, X_val: pd.DataFrame, y_val: pd.DataFrame, retraining: bool):
+    model_path = 'data/04_model/best_model.pickle'
+
+    if(not retraining):
+        return new_model
+    if(not os.path.exists(model_path)):
+        print("Old model not available, skipping.")
+        return new_model
+    
+    y_pred_test_new_moddel = new_model.predict(X_val)
+    score_new_model = mean_squared_error(y_val, y_pred_test_new_moddel)
+
+    old_model = joblib.load(model_path)
+
+    y_pred_test_old_model = old_model.predict(X_val)
+    score_old_model = mean_squared_error(y_val, y_pred_test_old_model)
+
+    result_model = new_model
+
+    if score_new_model < score_old_model:
+        message = "New model is better."
+    else:
+        result_model = old_model
+        message = "Old model is better."
+    
+    print(message)
+
+    return result_model
 
 def evaluate_model(best_model: RandomForestRegressor, X_val: pd.DataFrame, y_val: pd.DataFrame) -> dict:
     metrics = {}

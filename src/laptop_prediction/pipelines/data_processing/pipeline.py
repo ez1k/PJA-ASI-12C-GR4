@@ -13,7 +13,7 @@ def create_pipeline(** kwargs) -> Pipeline:
         [
             node(
                 func=transform_data,
-                inputs="laptops",
+                inputs=["laptops", "laptops_new", "params:retraining"],
                 outputs="laptops_for_model",
                 name="transform_laptops_node"
             )
