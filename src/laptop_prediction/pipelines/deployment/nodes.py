@@ -5,6 +5,7 @@ generated using Kedro 0.19.2
 import os
 import json
 import pickle
+import wandb
 
 def compare_with_champion(model_challenger, score_challenger):
     model_path = "data/04_model/best_model.pickle"
@@ -45,6 +46,14 @@ def compare_with_champion(model_challenger, score_challenger):
         challenger_mae = score_challenger['val_mae']
         message = (f"No existing champion model. Set the challenger as the champion model.\n"
                    f"Challenger val_mae: {challenger_mae}")
+    
+    wandb.init(project='PJA-ASI-12C-GR4')
+    wandb.log({
+        "Val MAE": best_model_score['val_mae'],
+        "Val MSE": best_model_score['val_mse'],
+        "Val RMSE": best_model_score['val_rmse'],
+        "Val R2": best_model_score['val_r2'],
+    })
     
     print(message)
     return best_model, best_model_score
