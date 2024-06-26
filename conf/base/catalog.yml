@@ -107,7 +107,7 @@ score_best_model:
     kedro-viz:
       layer: model_output
 
-metrics:
+score_challenger:
   type: json.JSONDataset
   filepath: data/05_model_output/score_challenger.json
   metadata:
