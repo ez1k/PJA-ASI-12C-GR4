@@ -21,7 +21,7 @@ def train_model_challenger(train_data: pd.DataFrame):
     )
     return predictor
 
-def evaluate_model(model, test_data: pd.DataFrame, retraining: bool, X_val: pd.DataFrame, y_val: pd.DataFrame):
+def evaluate_model(model, test_data: pd.DataFrame, retraining: bool, X_test: pd.DataFrame, y_test: pd.DataFrame):
     if (retraining):
         best_model_path = 'data/04_model/best_model.pickle'
         best_score_path = "data/05_model_output/score_best_model.json"
@@ -33,11 +33,11 @@ def evaluate_model(model, test_data: pd.DataFrame, retraining: bool, X_val: pd.D
             champion_model = best_model_score['model']
             print('Retraining')
             if (champion_model == 'ml'):
-                y_pred_test = best_model.predict(X_val)
-                mae = mean_absolute_error(y_val, y_pred_test)
-                mse = mean_squared_error(y_val, y_pred_test)
+                y_pred_test = best_model.predict(X_test)
+                mae = mean_absolute_error(y_test, y_pred_test)
+                mse = mean_squared_error(y_test, y_pred_test)
                 rmse = math.sqrt(mse)
-                r2 = r2_score(y_val, y_pred_test)
+                r2 = r2_score(y_test, y_pred_test)
 
                 print(champion_model)
                 print(mae)

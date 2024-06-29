@@ -11,13 +11,13 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
         node(
                 func=optimize_model,
-                inputs=["model", "X_test", "y_test", "params:cv", "params:verbose", "params:n_jobs"],
+                inputs=["model", "X_val", "y_val", "params:cv", "params:verbose", "params:n_jobs"],
                 outputs="model_challenger",
                 name="optimize_model_node",
             ),
         node(
                 func=evaluate_model,
-                inputs=["model_challenger", "X_val", "y_val", "params:retraining", "test_data"],
+                inputs=["model_challenger", "X_test", "y_test", "params:retraining", "test_data"],
                 outputs="score_challenger",
                 name="evaluate_model_node",
             )
