@@ -77,6 +77,17 @@ You can run your Kedro project with:
 kedro run
 ```
 
+## How to retraining:
+
+You need to add:
+
+```
+--params=retraining=true
+
+Example:
+kedro run --params=retraining=true
+```
+
 ## How to run pipline visualization
 
 You can run Kedro pipline visualization with:
