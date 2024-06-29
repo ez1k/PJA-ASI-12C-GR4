@@ -12,38 +12,38 @@ Used dataset: https://www.kaggle.com/datasets/ara001/laptop-prices-based-on-its-
 
 ## Pipelines
 
-# Automl Pipeline (automl):
+### Automl Pipeline (automl):
 
     data_processing_pipeline -> modeling_pipeline -> automl_pipeline -> deployment_pipeline
 
-# Machine Learning Pipeline (ml):
+### Machine Learning Pipeline (ml):
 
     data_processing_pipeline -> modeling_pipeline -> machine_learning_pipeline -> deployment_pipeline
 
-# data_processing_pipeline: 
+### data_processing_pipeline: 
 
 This pipeline processes laptop data. It merges new data with existing data, removes unnecessary columns, transforms values in columns like Ram and Weight, and extracts additional information related to screen resolution, memory, CPU, and operating system.
 
-# modeling_pipeline:
+### modeling_pipeline:
 
 This pipeline is responsible for modeling laptop data. It consists of two main stages:
     1. Data preprocessing (preprocess_data): Converts categorical columns to numerical values using a label encoder, fills missing values in memory-related columns with zeros.
     2. Data splitting (split_data): Splits the data into training, validation, and test sets, separating features and labels.
 
-# machine_learning_pipeline
+### machine_learning_pipeline
 
 This pipeline is responsible for training, optimizing, and evaluating a Random Forest model for laptop price prediction. It consists of three main stages:
     1. Model training (run_model): Trains a Random Forest model on the training dataset.
     2. Model optimization (optimize_model): Optimizes the model's hyperparameters using RandomizedSearchCV.
     3. Model evaluation (evaluate_model): Evaluates the optimized model on the validation dataset, and in case of retraining, compares it with the best model saved in the files.
 
-# automl_pipeline
+### automl_pipeline
 
 This pipeline is responsible for automatic training and evaluation of a model using AutoGluon. It consists of two main stages:
     1. Model training (train_model_challenger): Trains an AutoGluon model on the training data with specified hyperparameters.
     2. Model evaluation (evaluate_model): Evaluates the AutoGluon model on test and validation data, and in case of retraining, compares it with the best model saved in the files.
 
-# deployment_pipeline
+### deployment_pipeline
 
 This pipeline compares the new model (challenger) with the best existing model (champion). If the new model has better metrics, it is saved as the new champion model. The results are also logged to Weights & Biases (wandb).
 
