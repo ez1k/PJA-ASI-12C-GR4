@@ -78,9 +78,9 @@ This YAML file defines the data catalog used in a Kedro project. Each entry spec
 ## API
 
 This API, built using FastAPI, allows for predicting the price of a laptop based on input features. Key components:
-    1. InputJson: A class representing the structure of input data, with attributes corresponding to laptop features.
-    2. FastAPI: The main FastAPI application, which defines the prediction endpoint.
-    3. Predict Endpoint: The POST / endpoint that accepts input data in JSON format, loads the best model saved in the best_model.pickle file, processes the input data into a DataFrame, and generates a price prediction.
+1. InputJson: A class representing the structure of input data, with attributes corresponding to laptop features.
+2. FastAPI: The main FastAPI application, which defines the prediction endpoint.
+3. Predict Endpoint: The POST / endpoint that accepts input data in JSON format, loads the best model saved in the best_model.pickle file, processes the input data into a DataFrame, and generates a price prediction.
 
 ## Architecture of MLOps Pipelines - MLOps_diagram.png
 
